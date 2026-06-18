@@ -1,0 +1,23 @@
+import { ILogger, INotificationChannel } from "../core/interfaces";
+import { User } from "../models/User";
+
+/**
+ * Сервіс SMS-повідомлень.
+ *
+ * SRP:
+ * відповідає лише за SMS-відправку.
+ *
+ * Реалізує інтерфейс INotificationChannel,
+ * тому підтримує принцип LSP.
+ */
+export class SMSNotification implements INotificationChannel {
+  constructor(private logger: ILogger) {}
+
+  send(user: User, message: string): void {
+    this.logger.log(`Sending SMS to ${user.phone}`);
+
+    console.log(
+      `SMS sent to ${user.phone}: ${message}`
+    );
+  }
+}
